@@ -41,10 +41,10 @@ export default class ProductCardComponent extends Component{
         })
     }
 
+
     //react lifecycle method, is called before the page load, 
     // that the reason i chose it to bring data from the database.
     // is that why it's called Data base ??? intersting...
-    
     componentDidMount() {
         // axios.get => sending a 'get' http request to the url i passed it.
         axios.get('http://localhost:4000/products/')
@@ -59,19 +59,6 @@ export default class ProductCardComponent extends Component{
         // Who you gonna call ??? De-Buggers !!!
         .catch(err => {if (err) console.log(err)})
     }
-
-    // getting the product list from the state, and turning it into card functional component, so the data 
-    // is 'drawn' on the cards.
-    // // getting it back from the functional component as an array of ready to display card.
-    // getProductList() {
-    //     // mapping the state (list of products), passing it callback the currentProduct
-    //     return this.state.product.map( currentProduct => {
-    //         // returning new 'FunctionalProductCardComponent' with the data of the current product
-    //         return <FunctionalProductCardComponent product={currentProduct} key={currentProduct._id}/>
-    //     })
-    // }
-    
-
 
     render() {
         const {product, currentPage, cardsPerPage}  =  this.state
@@ -104,8 +91,6 @@ export default class ProductCardComponent extends Component{
             return (
             <div>
                 <Row id="RowIdForCentering">
-                    {/* calling the method that will create the cards */}
-                    {/* {this.getProductList()} */}
                     {renderCards}
                 </Row>
                  <ul id="page-numbers">
