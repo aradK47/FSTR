@@ -28,7 +28,8 @@ export default class ProductCardComponent extends Component{
         // the empty list of product
         this.state = {
             product:  [],
-            // cardsPerPage: 9,
+            currentPage: 1,
+            cardsPerPage: 9,
         }
 
         this.handleClick = this.handleClick.bind(this)
@@ -62,13 +63,13 @@ export default class ProductCardComponent extends Component{
     // getting the product list from the state, and turning it into card functional component, so the data 
     // is 'drawn' on the cards.
     // // getting it back from the functional component as an array of ready to display card.
-    getProductList() {
-        // mapping the state (list of products), passing it callback the currentProduct
-        return this.state.product.map( currentProduct => {
-            // returning new 'FunctionalProductCardComponent' with the data of the current product
-            return <FunctionalProductCardComponent product={currentProduct} key={currentProduct._id}/>
-        })
-    }
+    // getProductList() {
+    //     // mapping the state (list of products), passing it callback the currentProduct
+    //     return this.state.product.map( currentProduct => {
+    //         // returning new 'FunctionalProductCardComponent' with the data of the current product
+    //         return <FunctionalProductCardComponent product={currentProduct} key={currentProduct._id}/>
+    //     })
+    // }
     
 
 
@@ -81,7 +82,6 @@ export default class ProductCardComponent extends Component{
             const currentCard = product.slice(indexOfFirstCard, indexOfLastCard);
 
             const renderCards = currentCard.map( (card, index) => {
-                console.log("My eyessssssssss my eyessssssss");
                 return <Col key={index}> <FunctionalProductCardComponent product={card} key={card._id}/> </Col>
             } );
 
@@ -105,7 +105,7 @@ export default class ProductCardComponent extends Component{
             <div>
                 <Row id="RowIdForCentering">
                     {/* calling the method that will create the cards */}
-                    {this.getProductList()}
+                    {/* {this.getProductList()} */}
                     {renderCards}
                 </Row>
                  <ul id="page-numbers">
