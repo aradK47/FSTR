@@ -1,0 +1,27 @@
+#ProductCard{
+    margin: auto;
+    margin-top: 30px;
+}
+
+#ringImgId{
+    height: 180px;
+}
+#addToCartBtn{
+    position: absolute;
+    right: 20px;
+}
+.accordionToggleButton{
+    color: black;
+}
+
+#page-numbers {
+    list-style: none;
+    display: flex;
+}
+
+#page-numbers > li {
+    margin-right: 0.3em;
+    
+    user-select: none;
+    cursor: pointer;
+}

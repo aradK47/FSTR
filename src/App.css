@@ -1,6 +1,24 @@
-.App {
+*{
+  padding: 0px !important;
+  margin: 0 !important;
+}
+
+.navContainer{
+  padding-left: 0px !important;
+  padding-right: 0px !important;
+}
+.container-fluid{
+  padding: 0px !important;
+}
+
+
+
+
+/* .App {
   text-align: center;
 }
+
+
 
 .App-logo {
   height: 40vmin;
@@ -35,4 +53,5 @@
   to {
     transform: rotate(360deg);
   }
-}
+} */
+
