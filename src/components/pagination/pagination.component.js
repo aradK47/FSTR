@@ -1,204 +1,82 @@
-import React, {Component, Fragment} from 'react'
-import PropTypes from 'prop-types'
+import React from 'react'
+import { Col} from 'react-bootstrap/dist/react-bootstrap'
+import FunctionalProductCardComponent from '../product_card.component.js/functional_card_component'
 
-const LEFT_PAGE = 'LEFT'
-const RIGHT_PAGE = 'RIGHT'
+export default class Paginatoin{
 
-/***
- * Helper method for creating a range of numbers
- * range(1,5) = > [1,2,3,4,5]
- */
-
- const range = ( from, to, step = 1) => {
-     let i = from
-     const range = []
-
-     while ( i <= to) {
-         range.push(i)
-        i += step
-     }
-     return range
- }
-
-class Pagination extends Component {
-    constructor(props) {
-        super(props)
-
-        const { totalCards, pageLimit = 9 ,   pageNeighbours = 0 } = props;
-
-        this.pageLimit = typeof(pageLimit)  === 'number' ? pageLimit: 9;
-        this.totalCards = typeof(totalCards) === 'number' ? totalCards: 0;
-
-        //pageneighbours can be: 0, 1 or 2
-        this.pageNeighbours = typeof(pageNeighbours) === 'number' ? Math.max(0, Math.min(pageNeighbours, 2)) : 0;
-
-        this.totalPages = Math.ceil(this.totalCards / this.pageLimit);
-
-        this.state  = {
-            currentPage: 1,
-        }
-    }
-
-    componentDidMount() {
-        this.goToPage(1);
-    }
-
-    goToPage = page => {
-        const {onPageChanged = f => f} = this.props;
-
-        const currentPage = Math.max(0, Math.min(page, this.totalPages))
-
-        const paginationData = {
-            currentPage,
-            totalPages: this.totalPages,
-            pageLimit: this.pageLimit,
-            totalCards: this.totalCards
-        }
-
-        this.setState( {
-            currentPage
-        }, () => onPageChanged(paginationData))
-    }
-
-    handleClick = page => evt => { 
-        evt.preventDefault();
-        this.goToPage(page)
-    }
-
-    handleMoveLeft = evt => {
-        evt.preventDefault();
-        this.goToPage(this.state.currentPage - (this.pageNeighbours*1) - 1);
-    }
-
-    handleMoveRight = evt => {
-        evt.preventDefault();
-        this.goToPage(this,this.state.currentPage - (this.pageNeighbours*1) + 1)
-    }
-
-      /**
-   * Let's say we have 10 pages and we set pageNeighbours to 2
-   * Given that the current page is 6
-   * The pagination control will look like the following:
-   *
-   * (1) < {4 5} [6] {7 8} > (10)
-   *
-   * (x) => terminal pages: first and last page(always visible)
-   * [x] => represents current page
-   * {...x} => represents page neighbours
-   */
-
-   fetchPageNumbers = () => {
-    const totalPages = this.totalPages
-    const currentPage = this.currentPage
-    const pageNeighbours = this.pageNeighbours
-
-    /**
-     * totalNumbers: the total page numbers to show on the control
-     * totalBlocks: totalNumbers + 2 to cover for the left(<) and right(>) controls
-     */
-
-     const totalNumbers = (this.pageNeighbours * 2 )  + 3;
-     const totalBlocks = totalNumbers + 2;
-
-     if ( totalPages > totalBlocks ) {
-         const startPage = Math.max(2, currentPage - pageNeighbours)
-         const endPage = Math.min( totalPages - 1, currentPage + pageNeighbours)
-
-         let pages = range(startPage, endPage);
-
-         /**
-       * hasLeftSpill: has hidden pages to the left
-       * hasRightSpill: has hidden pages to the right
-       * spillOffset: number of hidden pages either to the left or to the right
-       */
+    constructor(itemsPerPage, currentPage, listOfItems) {
+       
+        this.handleClick = this.handleClick.bind(this)    
         
-       const hasLeftSpill = startPage > 2;
-       const hasRightSpill = ( totalPages - endPage ) > 1;
-       const spillOffset = totalNumbers- (pages.length + 1);
+        this.indexOfLastItem = currentPage * itemsPerPage;
+        this.indexOfFirstItem = this.indexOfLastItem - itemsPerPage;
+        this.currentItem = listOfItems.slice(this.indexOfFirstItem, this.indexOfLastItem)
 
-       switch (true) {
-           // handle: (1) < {5 6} [7] {8 9} (10)
-           case (hasLeftSpill && !hasRightSpill): {
-               const extraPages = range(startPage - spillOffset, startPage - 1);
-               pages = [LEFT_PAGE, ...extraPages, ...pages];
-               break;
-           }
-
-           // handle (1) {2 3} [4] {5 6}> (10)
-           case (!hasLeftSpill && hasRightSpill): {
-               const extraPages = range(endPage + 1, endPage + spillOffset);
-               pages = [...pages, ...extraPages, RIGHT_PAGE]
-               break;
-           }
-
-           // handle (1) < {4 5} [6] { 7 8} > (10)
-           case (hasLeftSpill && hasRightSpill) :
-               default: {
-                   pages = [LEFT_PAGE, ...pages, RIGHT_PAGE]
-                   break;
-               }
-       }
-
-       return [1, ...pages, totalPages]
-     }
-     return range(1,totalPages)
-}
-
-render() {
-    if (!this.totalCards || this.totalPages === 1) {
-        return null;
     }
-    const { currentPage } = this.state;
-    const pages = this.fetchPageNumbers()
+    
 
-    return (
-        <Fragment>
-            <nav aria-label="Cards Pagination">
-                <ul className="pagination">
-                    {pages.map((page,index)=> {
-                        if  (page === LEFT_PAGE) {
-                            return (
-                                <li key={index} className="page-item">
-                                    <a className="page-link" href="/${index}" aria-label="Previous" onClick={this.handleMoveLeft}>
-                                        <span aria-hidden="true">&laquo;</span>
-                                        <span className="sr-only">Previous</span>
-                                    </a>
-                                </li>
-                            );
-                        }
-                        if ( page === RIGHT_PAGE) {
-                            return (
-                                <li key={index} className="page-item"> 
-                                    <a className="page-link" href="/${index}" aria-label="Next" onClick={this.handleMoveRight}>
-                                        <span aria-hidden="true">&raquo;</span>
-                                        <span className="sr-only">Next</span>
-                                    </a>
-                                </li>
-                            );
-                        }
+    handleClick(event) {
+        return Number(event.target.id)   
+    }
 
-                        return (
-                            <li key={index} className={`page-item${currentPage === page ? 'active' :  '' }`}>
-                                <a className="page-link" href="/{index}" onClick={this.handleClick(page)}>{page}</a>
-                            </li>
-                        )
-                    })}
-                </ul>
-            </nav>
-        </Fragment>
-    )
+    renderItems() {
+        return this.currentItem.map( (card, index) => {
+                    return <Col key={index}> <FunctionalProductCardComponent product={card} key={card._id}/> </Col>
+                } );
+    }
 
+        // renderCards = this.currentItem.map( (card, index) => {
+        //     return <Col key={index}> <FunctionalProductCardComponent product={card} key={card._id}/> </Col>
+        // } );
+
+
+    renderPageNumbers(listOfItems, itemsPerPage) {
+        const pageNumbers = []
+        for (let i = 1;  i <= Math.ceil(listOfItems.length / itemsPerPage) ; i++) {
+            pageNumbers.push(i)
+        }
+        console.log(pageNumbers.length)
+        return pageNumbers.map( number => {
+            return <li key={number} 
+                             id={number} 
+                             onClick={this.handleClick}>
+                                 {number}
+                        </li>
+        })
+    }
 }
+//     render() {
+
+//         // const {itemsPerPage, currentPage, listOfItems}  =  this.state;
+
+//         // logic for displaying items:
+//         // const indexOfLastItem = currentPage * itemsPerPage;
+//         // const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+//         // const currentItem = listOfItems.slice(indexOfFirstItem, indexOfLastItem)
+
+//         // this will render the functional card component, s
+        
 
 
+//         // logic for displaying page numbers
+//         // const pageNumbers = []
+//         // for (let i = 1;  i < Math.ceil(listOfItems.length / itemsPerPage) ; i++) {
+//         //     pageNumbers.push(i)
+//         // }
 
-}
+//         // const renderPageNumbers = pageNumbers.map( number => {
+//         //     return <li key={number} 
+//         //                      id={number} 
+//         //                      onClick={this.handleClick}>
+//         //                          {number}
+//         //                      </li>
+//         // })
 
-Pagination.propType = {
-    totalCards: PropTypes.number.isRequired,
-    pageLimit: PropTypes.number,
-    pageNeighbours: PropTypes.number,
-    onPageChanged: PropTypes.func
-}
+//         return (
+//             <div>
+//                {this.renderItems}
+//             </div>
 
-export default Pagination;
+// //         )
+//     }
+// }

@@ -25,21 +25,20 @@ export default class ProductCardComponent extends Component{
         // where to go.
         // this.getProductList = this.getProductList.bind(this)
 
+        this.handleClick = this.handleClick.bind(this)
+
         // the empty list of product
         this.state = {
             product:  [],
+            // cards: [],
             currentPage: 1,
             cardsPerPage: 9,
+
         }
-
-        this.handleClick = this.handleClick.bind(this)
+        
     }
 
-    handleClick(event) {
-        this.setState( {
-            currentPage: Number(event.target.id)
-        })
-    }
+    
 
 
     //react lifecycle method, is called before the page load, 
@@ -54,13 +53,33 @@ export default class ProductCardComponent extends Component{
             this.setState({
                 product: response.data,
             })
+            this.getProductList()
         })
         // if there's an error i will catch it here
         // Who you gonna call ??? De-Buggers !!!
         .catch(err => {if (err) console.log(err)})
     }
 
+    // getProductList() {
+    //     // mapping the state (list of products), passing it callback the currentProduct
+    //     this.setState({ cards: this.state.product.map( currentProduct => {
+    //         // returning new 'FunctionalProductCardComponent' with the data of the current product
+    //         return <FunctionalProductCardComponent product={currentProduct} key={currentProduct._id}/>
+    //         })
+    //     })
+    // }
+    
+    handleClick(event) {
+        this.setState({
+            currentPage: event.target.id
+        })
+    }
     render() {
+
+
+
+
+        
         const {product, currentPage, cardsPerPage}  =  this.state
 
             // logic for displaying cards
@@ -87,15 +106,20 @@ export default class ProductCardComponent extends Component{
                     </li>
                 )
             } )
-        
+        const pagination = new Pagination(9, 1, this.state.product)
+            
             return (
             <div>
                 <Row id="RowIdForCentering">
                     {renderCards}
+                      {/* {pagination.renderItems()} */}
                 </Row>
-                 <ul id="page-numbers">
-                    {renderPageNumbers}
-                </ul> 
+                <Row>
+                    <ul id="page-numbers">
+                        {/* {pagination.renderPageNumbers(this.state.product, 9)} */}
+                        {renderPageNumbers}
+                    </ul>
+                </Row> 
             </div>
         )
     }
