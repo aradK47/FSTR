@@ -4,8 +4,8 @@ import './product_card.scss'
 import {Row, Col} from 'react-bootstrap/dist/react-bootstrap'
 import axios from 'axios'
 import FunctionalProductCardComponent from './functional_card_component'
-import Pagination from '../pagination/pagination.component'
-
+// import Pagination from '../pagination/pagination.component'
+import Pagination from 'react-bootstrap/Pagination'
 /**
  * My Fist Self Doc.
  * Author: Dr.Proffessor. Arad .K.
@@ -76,10 +76,6 @@ export default class ProductCardComponent extends Component{
     }
     render() {
 
-
-
-
-        
         const {product, currentPage, cardsPerPage}  =  this.state
 
             // logic for displaying cards
@@ -99,26 +95,29 @@ export default class ProductCardComponent extends Component{
 
             const renderPageNumbers = pageNumbers.map ( number => {
                 return (
-                    <li key={number}
-                        id={number}
-                        onClick={this.handleClick}>
-                            {number}
-                    </li>
+                    // <li key={number}
+                    //     id={number}
+                    //     onClick={this.handleClick}>
+                    //         {number}
+                    // </li>
+                    <Pagination.Item key={number} 
+                                                   id={number}
+                                                    onClick={this.handleClick}>
+                                                    {number}
+                    </Pagination.Item>
                 )
             } )
-        const pagination = new Pagination(9, 1, this.state.product)
+        // const pagination = new Pagination(9, 1, this.state.product)
             
             return (
             <div>
                 <Row id="RowIdForCentering">
                     {renderCards}
-                      {/* {pagination.renderItems()} */}
                 </Row>
                 <Row>
-                    <ul id="page-numbers">
-                        {/* {pagination.renderPageNumbers(this.state.product, 9)} */}
-                        {renderPageNumbers}
-                    </ul>
+                        <Pagination id="page-numbers">
+                                {renderPageNumbers}
+                        </Pagination>
                 </Row> 
             </div>
         )
