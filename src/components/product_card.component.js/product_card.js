@@ -110,15 +110,19 @@ export default class ProductCardComponent extends Component{
         // const pagination = new Pagination(9, 1, this.state.product)
             
             return (
-            <div>
-                <Row id="RowIdForCentering">
-                    {renderCards}
-                </Row>
-                <Row>
-                        <Pagination id="page-numbers">
-                                {renderPageNumbers}
-                        </Pagination>
-                </Row> 
+            <div id="centeredRowForPagination">
+                <div>
+                    <Row id="RowIdForCentering">
+                        {renderCards}
+                    </Row>
+                </div>
+                <div id="centeredRowForPagination">
+                    <Row>
+                            <Pagination id="page-numbers">
+                                    {renderPageNumbers}
+                            </Pagination>
+                    </Row> 
+                </div>
             </div>
         )
     }

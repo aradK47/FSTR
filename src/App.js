@@ -22,7 +22,7 @@ function App() {
             <MyNavbar className="navContainer"/>
         </Container>
         <Container>
-          <Row>
+          <Row id="paginationAndCardCentered">
               <Route path='/' exact component={ProductCardComponent}/>
           </Row>
         </Container>
