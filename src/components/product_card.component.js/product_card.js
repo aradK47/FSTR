@@ -26,7 +26,8 @@ export default class ProductCardComponent extends Component{
         // this.getProductList = this.getProductList.bind(this)
 
         this.handleClick = this.handleClick.bind(this)
-
+        // this.onChangedColor = this.onChangedColor.bind(this)
+        
         // the empty list of product
         this.state = {
             product:  [],
@@ -53,11 +54,17 @@ export default class ProductCardComponent extends Component{
             this.setState({
                 product: response.data,
             })
-            this.getProductList()
+            // this.getProductList()
         })
         // if there's an error i will catch it here
         // Who you gonna call ??? De-Buggers !!!
         .catch(err => {if (err) console.log(err)})
+    }
+
+    onChangedColor = (e) => {
+        console.log("sup")
+        console.log(e)
+        alert(e)
     }
 
     // getProductList() {
@@ -84,7 +91,13 @@ export default class ProductCardComponent extends Component{
             const currentCard = product.slice(indexOfFirstCard, indexOfLastCard);
 
             const renderCards = currentCard.map( (card, index) => {
-                return <Col key={index}> <FunctionalProductCardComponent product={card} key={card._id}/> </Col>
+                return <Col key={index}> <FunctionalProductCardComponent 
+                                                                        product={card} 
+                                                                        key={card._id} 
+                                                                        // onChange ={(e)=> {this.onChangedColor(()=> {return e()})}} 
+                                                                        onChange={(e) => this.onChangedColor(e)}
+                                                                        />
+                             </Col>
             } );
 
             // logic for displaying page numbers:
