@@ -25,7 +25,7 @@ export default class ProductCardComponent extends Component{
         // where to go.
         // this.getProductList = this.getProductList.bind(this)
 
-        this.handleClick = this.handleClick.bind(this)
+        // this.handleClick = this.handleClick.bind(this)
         // this.onChangedColor = this.onChangedColor.bind(this)
         
         // the empty list of product
@@ -63,8 +63,8 @@ export default class ProductCardComponent extends Component{
 
     onChangedColor = (e) => {
         console.log("sup")
-        console.log(e)
-        alert(e)
+        console.log(e())
+
     }
 
     // getProductList() {
@@ -95,7 +95,8 @@ export default class ProductCardComponent extends Component{
                                                                         product={card} 
                                                                         key={card._id} 
                                                                         // onChange ={(e)=> {this.onChangedColor(()=> {return e()})}} 
-                                                                        onChange={(e) => this.onChangedColor(e)}
+                                                                        onChange ={(e)=> {this.onChangedColor(()=> {return e()})}} 
+                                                                        
                                                                         />
                              </Col>
             } );

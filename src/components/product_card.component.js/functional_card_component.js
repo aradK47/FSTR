@@ -89,7 +89,7 @@ return (
                             </Card.Header>
                             <Accordion.Collapse eventKey="1">
                                 <Card.Body>
-                                    <Select required className='form-control' options={[{'value':"red", 'label':"red"}]} placeholder ={'Select a color'} onChange={(selectedValue) => { props.onChange(()=>{alert(selectedValue.value)}); }} />
+                                    <Select required className='form-control' options={data} placeholder ={'Select a color'} onChange={(selectedValue) => { props.onChange(()=>{return selectedValue.value}); }} />
                                 </Card.Body>
                             </Accordion.Collapse>
                         {/* </Card> */}
