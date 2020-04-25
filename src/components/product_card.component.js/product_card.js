@@ -4,8 +4,8 @@ import './product_card.scss'
 import {Row, Col} from 'react-bootstrap/dist/react-bootstrap'
 import axios from 'axios'
 import FunctionalProductCardComponent from './functional_card_component'
-// import Pagination from '../pagination/pagination.component'
 import Pagination from 'react-bootstrap/Pagination'
+
 /**
  * My Fist Self Doc.
  * Author: Dr.Proffessor. Arad .K.
@@ -25,7 +25,7 @@ export default class ProductCardComponent extends Component{
         // where to go.
         // this.getProductList = this.getProductList.bind(this)
 
-        // this.handleClick = this.handleClick.bind(this)
+        this.handleClick = this.handleClick.bind(this)
         // this.onChangedColor = this.onChangedColor.bind(this)
         
         // the empty list of product
@@ -109,11 +109,6 @@ export default class ProductCardComponent extends Component{
 
             const renderPageNumbers = pageNumbers.map ( number => {
                 return (
-                    // <li key={number}
-                    //     id={number}
-                    //     onClick={this.handleClick}>
-                    //         {number}
-                    // </li>
                     <Pagination.Item key={number} 
                                                    id={number}
                                                     onClick={this.handleClick}>
