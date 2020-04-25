@@ -6,6 +6,7 @@ import axios from 'axios'
 import FunctionalProductCardComponent from './functional_card_component'
 import Pagination from 'react-bootstrap/Pagination'
 
+
 /**
  * My Fist Self Doc.
  * Author: Dr.Proffessor. Arad .K.
@@ -80,6 +81,7 @@ export default class ProductCardComponent extends Component{
         this.setState({
             currentPage: event.target.id
         })
+        // this.props.history.push("/page="+event.target.id)
     }
     render() {
 
@@ -109,11 +111,12 @@ export default class ProductCardComponent extends Component{
 
             const renderPageNumbers = pageNumbers.map ( number => {
                 return (
-                    <Pagination.Item key={number} 
-                                                   id={number}
-                                                    onClick={this.handleClick}>
-                                                    {number}
-                    </Pagination.Item>
+                        <Pagination.Item key={number} 
+                                                       id={number}
+                                                       onClick={this.handleClick}
+                                                       href={"#page="+number}>
+                                                        {number}
+                        </Pagination.Item>
                 )
             } )
         // const pagination = new Pagination(9, 1, this.state.product)
@@ -129,6 +132,7 @@ export default class ProductCardComponent extends Component{
                     <Row>
                             <Pagination id="page-numbers">
                                     {renderPageNumbers}
+                                    
                             </Pagination>
                     </Row> 
                 </div>

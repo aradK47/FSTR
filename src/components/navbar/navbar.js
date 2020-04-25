@@ -18,7 +18,7 @@ export default class MyNavbar extends Component {
         return(
             <div  className="sticky-top">
                 <Navbar bg="light" expand="lg" id="myNav" >
-                    <Navbar.Brand href="#home">FSTR</Navbar.Brand>
+                    <Navbar.Brand href="/">FSTR</Navbar.Brand>
                     <Navbar.Toggle aria-controls="basic-navbar-nav" />
                     <Navbar.Collapse id="basic-navbar-nav">
                         <Nav className="mr-auto">
@@ -29,7 +29,7 @@ export default class MyNavbar extends Component {
                             <NavDropdown.Item href="/children">Children</NavDropdown.Item>
                             <NavDropdown.Item href="/accessories">Accessories</NavDropdown.Item>
                             <NavDropdown.Divider />
-                            <NavDropdown.Item href="#sales">Sales</NavDropdown.Item>
+                            <NavDropdown.Item href="/sales">Sales</NavDropdown.Item>
                         </NavDropdown>
                         </Nav>
                         <Form inline>
@@ -40,7 +40,7 @@ export default class MyNavbar extends Component {
                     <Nav className="mr-auto" id="navProfileItems">
                         <Nav.Link to='/support' href="/support">Support</Nav.Link>
                         <Nav.Link to="/profile" href="/profile">Profile</Nav.Link>
-                        <Nav.Link href="#cart">Cart</Nav.Link>
+                        <Nav.Link to='/cart' href='/cart'>Cart</Nav.Link>
                     </Nav>
                 </Navbar>
 
