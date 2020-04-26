@@ -8,8 +8,8 @@ var ProductSchema = new Schema ({
     serial: {type: String, required: true},
     price:  {type: Number, required: true},
     gender: {type: String, required: true},
-    color: {type: Object, required: true},
-    size: {type: Object, required: true}
+    color: {type: Array, required: true},
+    size: {type: Array, required: true}
 },{
     timestamps: true
 })

@@ -5,6 +5,10 @@ import {Row, Col} from 'react-bootstrap/dist/react-bootstrap'
 import axios from 'axios'
 import FunctionalProductCardComponent from './functional_card_component'
 import Pagination from 'react-bootstrap/Pagination'
+import './product_card.scss'
+
+
+
 
 
 /**
@@ -18,7 +22,6 @@ import Pagination from 'react-bootstrap/Pagination'
  */
 // exporting the class so i can use it in App.js
 export default class ProductCardComponent extends Component{
-    
     constructor(props) {
         super(props)
 
@@ -35,8 +38,13 @@ export default class ProductCardComponent extends Component{
             // cards: [],
             currentPage: 1,
             cardsPerPage: 9,
+        }
+
+        this.product = {
 
         }
+
+        
         
     }
 
@@ -63,9 +71,11 @@ export default class ProductCardComponent extends Component{
     }
 
     onChangedColor = (e) => {
-        console.log("sup")
         console.log(e())
+    }
 
+    onChangedSize = (e) => {
+        console.log(e())
     }
 
     // getProductList() {
@@ -98,7 +108,6 @@ export default class ProductCardComponent extends Component{
                                                                         key={card._id} 
                                                                         // onChange ={(e)=> {this.onChangedColor(()=> {return e()})}} 
                                                                         onChange ={(e)=> {this.onChangedColor(()=> {return e()})}} 
-                                                                        
                                                                         />
                              </Col>
             } );
@@ -113,8 +122,9 @@ export default class ProductCardComponent extends Component{
                 return (
                         <Pagination.Item key={number} 
                                                        id={number}
+                                                       className="page-numbers-items"
                                                        onClick={this.handleClick}
-                                                       href={"#page="+number}>
+                                                       href={"#page="+number+"/"}>
                                                         {number}
                         </Pagination.Item>
                 )

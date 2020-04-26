@@ -1,4 +1,4 @@
-import React, { createRef, Component} from 'react'
+import React, { createRef,} from 'react'
 import Select from 'react-select'
 import {Accordion, Card, Button} from  'react-bootstrap/dist/react-bootstrap'
 import 'bootstrap/dist/css/bootstrap.css';
@@ -22,14 +22,39 @@ import imageUrl from '../../images/rfm.png'
  */
 const myRef = createRef()
 
+const customStyles = {
+    control: (base, state) => ({
+      ...base,
+      
+      // match with the menu
+      borderRadius: state.isFocused ? "3px 3px 0 0" : 3,
+      // Overwrittes the different states of border
+      borderColor: state.isFocused ? "yellow" : "green",
+      // Removes weird border around container
+      boxShadow: state.isFocused ? null : null,
+      "&:hover": {
+        // Overwrittes the different states of border
+        borderColor: state.isFocused ? "red" : "blue"
+      }
+    }),
+    menu: base => ({
+      ...base,
+      // override border radius to match the box
+      borderRadius: 0,
+      // kill the gap
+      marginTop: 0
+    }),
+    menuList: base => ({
+      ...base,
+      // kill the white space on first and last option
+      padding: 0
+    })
+  };
+
 const FunctionalProductCardComponent = props => {
    
-
-    var data = [];
-    for (let i = 0 ; i < props.product.color.length ; i++ ) { 
-        data.push( {'value': props.product.color[i], 'label': props.product.color[i] } )
-    }
-    console.log(data)
+    
+    
 return (
     // giving the div id only for design pourpse
     <div id="ProductCard">
@@ -70,15 +95,15 @@ return (
                             </Accordion.Toggle>
                             </Card.Header>
                             <Accordion.Collapse eventKey="0">
-                                {/* <Card.Body> */}
-                                    <Select  ref={myRef} required className='form-control' options={props.product.size} placeholder ={'Select a color'} onChange={(selectedValue) => { props.onChange(()=>{{return selectedValue}}); }} />
+                                <Card.Body>
+                                    <Select ref={myRef} required className='SelectOption' options={props.product.size} placeholder ={'Select a color'} onChange={(selectedValue) => { props.onChange(()=>{return selectedValue.value}); }} />
                                         {/* <Select className="form-control" options={props.product.size} onChange= {(selectedValue) => {
                                             this.setState({value: selectedValue});
                                             this.props.onChange(() => {return selectedValue})
                                         }} 
                                         // value={this.state.value}
                                          /> */}
-                                {/* </Card.Body> */}
+                                </Card.Body>
                             </Accordion.Collapse>
                         {/* </Card> */}
                         {/* <Card> */}
@@ -89,7 +114,7 @@ return (
                             </Card.Header>
                             <Accordion.Collapse eventKey="1">
                                 <Card.Body>
-                                    <Select required className='form-control' options={data} placeholder ={'Select a color'} onChange={(selectedValue) => { props.onChange(()=>{return selectedValue.value}); }} />
+                                    <Select style={customStyles} required className='SelectOption' options={props.product.color} placeholder ={'Select a color'} onChange={(selectedValue) => { props.onChange(()=>{return selectedValue.value}); }} />
                                 </Card.Body>
                             </Accordion.Collapse>
                         {/* </Card> */}
