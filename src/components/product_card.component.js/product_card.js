@@ -1,11 +1,11 @@
 import React, { Component } from 'react'
 import 'bootstrap/dist/css/bootstrap.css';
-import './product_card.scss'
 import {Row, Col} from 'react-bootstrap/dist/react-bootstrap'
 import axios from 'axios'
 import FunctionalProductCardComponent from './functional_card_component'
 import Pagination from 'react-bootstrap/Pagination'
 import './product_card.scss'
+
 
 
 
@@ -22,7 +22,7 @@ import './product_card.scss'
  */
 // exporting the class so i can use it in App.js
 export default class ProductCardComponent extends Component{
-    constructor(props) {
+  constructor(props) {
         super(props)
 
         // binding the getProductList to 'this' key word so when i call it with 'this' it will know 
@@ -41,7 +41,11 @@ export default class ProductCardComponent extends Component{
         }
 
         this.product = {
-
+            id: 0,
+            price: 0,
+            serial: 0,
+            size: '',
+            color: '',
         }
 
         
@@ -74,7 +78,7 @@ export default class ProductCardComponent extends Component{
         console.log(e())
     }
 
-    onChangedSize = (e) => {
+    onBuyClicked = (e) => {
         console.log(e())
     }
 
@@ -107,7 +111,8 @@ export default class ProductCardComponent extends Component{
                                                                         product={card} 
                                                                         key={card._id} 
                                                                         // onChange ={(e)=> {this.onChangedColor(()=> {return e()})}} 
-                                                                        onChange ={(e)=> {this.onChangedColor(()=> {return e()})}} 
+                                                                        onChange ={ (e) => { this.onChangedColor( ()=> { return e() } ) } } 
+                                                                        onClick = { (e) => { this.onBuyClicked( () => { return e() } ) } }
                                                                         />
                              </Col>
             } );
@@ -142,7 +147,6 @@ export default class ProductCardComponent extends Component{
                     <Row>
                             <Pagination id="page-numbers">
                                     {renderPageNumbers}
-                                    
                             </Pagination>
                     </Row> 
                 </div>

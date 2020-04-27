@@ -31,6 +31,7 @@
     margin-bottom: 20px;
     @include border-radius(50px 50px 50px 50px) ;
 }
+
 .page-numbers-items {
     @include border-radius(50px 50px 50px 50px) ;
 }
@@ -39,14 +40,34 @@
     margin-right: 0.3em;
     user-select: none;
     cursor: pointer;
-    @include border-radius(50px 50px 50px 50px) ;
-    border-radius:0px 15% 0px 0px
+    
+}
+
+#page-numbers > li > a{
+    user-select: none;
+    cursor: pointer;
+    border-radius: 50% !important;
+    width: 35px !important;
+    height: 35px !important;
+    margin: auto !important;
+    justify-items: center !important; 
+    text-align: center !important;
+    align-items: center !important;
+    color: #444;
+    border-color: darkgray;
 }
 
 #centeredRowForPagination{
     margin: auto;
 }
 
+.SelectOption {
+    z-index: 999;
+}
+
+.SelectOption > option{
+    z-index: 999;
+}
 
 
 
