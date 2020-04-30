@@ -59,6 +59,7 @@
 
 #centeredRowForPagination{
     margin: auto;
+    position: relative;
 }
 
 .SelectOption {
@@ -69,5 +70,13 @@
     z-index: 999;
 }
 
+#RowIdForCentering {
+    position: relative;
+}
 
+#buyingComponent{
+    position: absolute !important;
+    z-index: 999 !important;
+    width: 5000px !important;
+}
 

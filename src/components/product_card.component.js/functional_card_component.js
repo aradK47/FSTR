@@ -5,6 +5,8 @@ import 'bootstrap/dist/css/bootstrap.css';
 import './product_card.scss'
 import {Col} from 'react-bootstrap/dist/react-bootstrap'
 import imageUrl from '../../images/rfm.png'
+import {Route, BrowserRouter as Router, Link} from 'react-router-dom'
+import BuyComponent from '../buy/buy.component'
 
 /**
  * Author: Dr.Proffessor. Arad .K.
@@ -22,14 +24,6 @@ import imageUrl from '../../images/rfm.png'
  */
 const myRef = createRef()
 
-// let newPrwoduct = {
-//     id: 0,
-//     price: 0,
-//     serial: 0,
-//     size: '',
-//     color: '',
-// }
-
 let chosenColor = ''
 let chosenSize = ''
 
@@ -37,6 +31,8 @@ const FunctionalProductCardComponent = props => {
     return (
         // giving the div id only for design pourpse
         <div id="ProductCard">
+            <Router>    
+            {/* <Route path='/buy' component={BuyComponent}/> */}
             <Col>
                 <Card style={{ width: '18rem'}}>
 
@@ -92,17 +88,27 @@ const FunctionalProductCardComponent = props => {
                             
                         </Accordion>
                     <Card.Body>
-                        <Card.Link href="#" onClick={ (newProduct) => {props.onClick(() => {return newProduct={
-                                id: props.product._id,
-                                price: props.product.price,
-                                serial: props.product.serial,
-                                size: chosenSize,
-                                color: chosenColor,
-                        }} ) } } >Buy</Card.Link>
+                    
+                        <Link href='/buy' to='/buy' >  
+                            <Button  onClick={ (newProduct) => {props.onClick(() => {return newProduct={
+                                    id: props.product._id,
+                                    price: props.product.price,
+                                    serial: props.product.serial,
+                                    size: chosenSize,
+                                    color: chosenColor,
+                            }}  ) } } >Buy</Button>
+                        </Link>
+                    
+                        
+                        
+                                
                         <Card.Link id="addToCartBtn" href="#">Add To Cart</Card.Link>
                     </Card.Body>
                 </Card>
             </Col>
+            
+                    
+                </Router>
         </div>
     )
 }

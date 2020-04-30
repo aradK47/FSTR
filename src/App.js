@@ -7,6 +7,7 @@ import {Container, Row} from 'react-bootstrap/dist/react-bootstrap'
 import ProductCardComponent from '../src/components/product_card.component.js/product_card'
 import {Route, BrowserRouter as Router} from 'react-router-dom'
 
+
 // import Pagination from '@material-ui/lab/Pagination';
 
 // import Pagination from 'pagination'
@@ -22,10 +23,11 @@ function App() {
             <MyNavbar className="navContainer"/>
         </Container>
         <Container>
-          <Row id="paginationAndCardCentered">
+          {/* <Row id="paginationAndCardCentered"> */}
               <Route path='/' exact component={ProductCardComponent}/>
-          </Row>
+          {/* </Row> */}
         </Container>
+        
       </div>
       
     </Router>

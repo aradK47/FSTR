@@ -4,6 +4,8 @@ import {Row, Col} from 'react-bootstrap/dist/react-bootstrap'
 import axios from 'axios'
 import FunctionalProductCardComponent from './functional_card_component'
 import Pagination from 'react-bootstrap/Pagination'
+import {Route, BrowserRouter as Router, BrowserRouter} from 'react-router-dom'
+import BuyComponent from '../buy/buy.component'
 import './product_card.scss'
 
 
@@ -38,6 +40,7 @@ export default class ProductCardComponent extends Component{
             // cards: [],
             currentPage: 1,
             cardsPerPage: 9,
+            willDisplayBuyComponent: false,
         }
 
         this.product = {
@@ -47,9 +50,6 @@ export default class ProductCardComponent extends Component{
             size: '',
             color: '',
         }
-
-        
-        
     }
 
     
@@ -80,7 +80,16 @@ export default class ProductCardComponent extends Component{
 
     onBuyClicked = (e) => {
         console.log(e())
+        alert("wee woo from ya mehoar")
+        this.setState({
+            willDisplayBuyComponent: !this.state.willDisplayBuyComponent,
+            
+        })
+        this.product = e()
+        document.getElementById('centeredRowForPagination').setAttribute('class', 'centeredRowForPaginationDisabled')
     }
+
+    
 
     // getProductList() {
     //     // mapping the state (list of products), passing it callback the currentProduct
@@ -137,20 +146,23 @@ export default class ProductCardComponent extends Component{
         // const pagination = new Pagination(9, 1, this.state.product)
             
             return (
-            <div id="centeredRowForPagination">
-                <div>
-                    <Row id="RowIdForCentering">
-                        {renderCards}
-                    </Row>
+               <div id="centeredRowForPagination">
+                    <div>
+                        <Row id="RowIdForCentering">
+                            {renderCards}
+                            {this.state.willDisplayBuyComponent && <BuyComponent id="buyingComponent" />}   
+                        </Row>    
+                    </div>
+                    <div id="centeredRowForPagination">
+                        <Row>
+                                <Pagination id="page-numbers">
+                                        {renderPageNumbers}
+                                </Pagination>
+                        </Row> 
+                    </div>
+                    
                 </div>
-                <div id="centeredRowForPagination">
-                    <Row>
-                            <Pagination id="page-numbers">
-                                    {renderPageNumbers}
-                            </Pagination>
-                    </Row> 
-                </div>
-            </div>
+         
         )
     }
 }
