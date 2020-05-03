@@ -1,10 +1,10 @@
 #buyComponentTesting{
     position:fixed;
     z-index: 999;
-    width:500px;
-    height:500px;
-    top:calc(40% - 200px);
-    left:calc(45% - 138px);
+    width:700px;
+    height:700px;
+    top:calc(35% - 200px);
+    left:calc(41% - 138px);
     background:beige;   
     pointer-events:all; /*but the div is accessible*/
     display:inline-flex;
@@ -14,14 +14,7 @@
     border-radius: 50px !important;
 }
 
-.centeredRowForPaginationDisabled{
-    pointer-events:none;//page disabled
-   /*Not required for this solution*/
-    width:100%;
-    height:100%;
-    opacity: 0.5;
-  /*Not required for this solution*/  
-  }
+
   
 // #buyComponentTesting{
 
