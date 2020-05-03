@@ -49,6 +49,7 @@ export default class ProductCardComponent extends Component{
             serial: 0,
             size: '',
             color: '',
+            name: '',
         }
     }
 
@@ -150,7 +151,7 @@ export default class ProductCardComponent extends Component{
                     <div>
                         <Row id="RowIdForCentering">
                             {renderCards}
-                            {this.state.willDisplayBuyComponent && <BuyComponent id="buyingComponent" />}   
+                            {this.state.willDisplayBuyComponent && <BuyComponent id="buyingComponent" product={this.product} />}   
                         </Row>    
                     </div>
                     <div id="centeredRowForPagination">

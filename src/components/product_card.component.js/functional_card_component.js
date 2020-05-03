@@ -96,6 +96,7 @@ const FunctionalProductCardComponent = props => {
                                     serial: props.product.serial,
                                     size: chosenSize,
                                     color: chosenColor,
+                                    name: props.product.name
                             }}  ) } } >Buy</Button>
                         </Link>
                     
