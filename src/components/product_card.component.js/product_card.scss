@@ -5,20 +5,27 @@
        -moz-border-radius: $top-left $top-right $bottom-right $bottom-left;
         -ms-border-radius: $top-left $top-right $bottom-right $bottom-left;
             border-radius: $top-left $top-right $bottom-right $bottom-left;  
-  }
+}
 
 #ProductCard{
     margin: auto;
     margin-top: 30px;
 }
 
+#theCards{
+    margin: auto;
+}
+
+
 #ringImgId{
     height: 180px;
 }
+
 #addToCartBtn{
     position: absolute;
     right: 20px;
 }
+
 .accordionToggleButton{
     color: black;
 }
@@ -39,8 +46,7 @@
 #page-numbers > li {
     margin-right: 0.3em;
     user-select: none;
-    cursor: pointer;
-    
+    cursor: pointer;   
 }
 
 #page-numbers > li > a{
@@ -62,16 +68,12 @@
     position: relative;
 }
 
-.SelectOption {
-    z-index: 999;
-}
-
-.SelectOption > option{
-    z-index: 999;
+#centeredRowForPagination > div{
+    margin: auto;
 }
 
 #RowIdForCentering {
-    position: relative;
+    margin: auto;
 }
 
 #buyingComponent{
@@ -82,9 +84,7 @@
 
 .centeredRowForPaginationDisabled{
     pointer-events:none;//page disabled
-   /*Not required for this solution*/
     width:100%;
     height:100%;
-    
-  /*Not required for this solution*/  
-  }
+}
+

@@ -34,7 +34,7 @@ const FunctionalProductCardComponent = props => {
             <Router>    
             {/* <Route path='/buy' component={BuyComponent}/> */}
             <Col>
-                <Card style={{ width: '18rem'}}>
+                <Card style={{ width: '18rem'}} id="theCards">
 
 
                     <Card.Img variant="top" src={imageUrl} id='ringImgId'/>

@@ -1,17 +1,22 @@
 #buyComponentTesting{
     position:fixed;
     z-index: 999;
-    width:700px;
-    height:700px;
-    top:calc(35% - 200px);
-    left:calc(41% - 138px);
-    background:beige;   
+    width:500px;
+    height:500px;
+    top:calc(25% - 50px);
+    left:calc(35% - 50px);
+    background-color: #eeeeee;
     pointer-events:all; /*but the div is accessible*/
     display:inline-flex;
     align-items:center;
     justify-content:center;
     border:1px solid black;
     border-radius: 50px !important;
+}
+
+#productDetailsList{
+    list-style: none;
+    bottom: 10%;
 }
 
 

@@ -120,6 +120,7 @@ export default class ProductCardComponent extends Component{
                 return <Col key={index}> <FunctionalProductCardComponent 
                                                                         product={card} 
                                                                         key={card._id} 
+                                                                        className="theCards"
                                                                         // onChange ={(e)=> {this.onChangedColor(()=> {return e()})}} 
                                                                         onChange ={ (e) => { this.onChangedColor( ()=> { return e() } ) } } 
                                                                         onClick = { (e) => { this.onBuyClicked( () => { return e() } ) } }
@@ -161,7 +162,6 @@ export default class ProductCardComponent extends Component{
                                 </Pagination>
                         </Row> 
                     </div>
-                    
                 </div>
          
         )
