@@ -12,6 +12,7 @@ router.route('/add').post((req,res)=>{
     const size = req.body.size;
     const gender = req.body.gender;
     const color = req.body.color;
+    const image = req.body.image;
 
     // createing a new instance of Product (which is instance of Schema eventually)
     // passing it the data.
@@ -22,6 +23,7 @@ router.route('/add').post((req,res)=>{
         size,
         gender,
         color,
+        image
     })
     // saving it to the MongoDB database => returns a promise so i need to do '.then' and 'catch'
     newProduct.save()

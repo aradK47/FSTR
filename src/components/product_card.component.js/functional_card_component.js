@@ -4,7 +4,8 @@ import {Accordion, Card, Button} from  'react-bootstrap/dist/react-bootstrap'
 import 'bootstrap/dist/css/bootstrap.css';
 import './product_card.scss'
 import {Col} from 'react-bootstrap/dist/react-bootstrap'
-import imageUrl from '../../images/rfm.png'
+// import imageUrl from '../../images/rfm.png'
+
 import {Route, BrowserRouter as Router, Link} from 'react-router-dom'
 import BuyComponent from '../buy/buy.component'
 
@@ -26,6 +27,7 @@ const myRef = createRef()
 
 let chosenColor = ''
 let chosenSize = ''
+let imageUrl = "https://firebasestorage.googleapis.com/v0/b/fstrcontroller.appspot.com/o/productImages%2F1591307368789.jpg?alt=media&token=6730de75-d214-4cd3-a557-b152f3304ca3"
 
 const FunctionalProductCardComponent = props => {
     return (
