@@ -10,7 +10,7 @@ var ProductSchema = new Schema ({
     gender: {type: String, required: true},
     color: {type: Array, required: true},
     size: {type: Array, required: true},
-    image: {type: String,  required: true}
+    imagesUri: {type: Array,  required: true}
 },{
     timestamps: true
 })
